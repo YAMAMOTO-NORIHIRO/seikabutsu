@@ -33,8 +33,12 @@
                 <!-- タスクの新規作成ボタン -->
                 <a href="{{ route('tasks.create') }}" class="btn btn-success mt-4">新しいタスクを登録</a>
 
+                <!-- メニュー一覧画面に戻るボタン -->
+                <a href="{{ route('tasks.index') }}" class="btn btn-secondary mt-4">メニュー一覧画面に戻る</a>
+
             </div>
         </div>
     </div>
 </div>
+
 
