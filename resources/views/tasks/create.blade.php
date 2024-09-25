@@ -33,6 +33,11 @@
                                 <!-- Seederで登録されたカテゴリを表示 -->
                                 <option value="1">事務作業（赤）</option>
                                 <option value="2">技術サポート（黄）</option>
+                                <option value="3">営業活動（青）</option>
+                                <option value="4">会議（黒）</option>
+                                <option value="5">顧客対応（白）</option>
+                                <option value="6">研修（緑）</option>
+                                <option value="7">その他作業（茶）</option>
                             </select>
                         </div>
 

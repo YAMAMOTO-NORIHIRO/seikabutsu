@@ -15,13 +15,10 @@
                         タスク一覧を表示
                     </a>
 
-                    <!-- 全員のタスク一覧 -->
-                    <h2>全員のタスク一覧</h2>
-                    <ul>
-                        @foreach ($allTasks as $task)
-                            <li>{{ $task->title }} ({{ $task->user->name }})</li>
-                        @endforeach
-                    </ul>
+                    <!-- 全員のタスク一覧へのリンクボタン -->
+                    <div>
+                        <a href="#" class="btn btn-secondary">全員のタスク一覧を表示</a>
+                    </div>
 
                     <!-- 通知画面へのリンク -->
                     <div>
@@ -33,4 +30,5 @@
         </div>
     </div>
 </x-app-layout>
+
 
