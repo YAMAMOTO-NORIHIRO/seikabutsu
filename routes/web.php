@@ -20,6 +20,7 @@ Route::middleware('auth')->group(function () {
 
     // Task関連のルート
     Route::get('/tasks/my-tasks', [TaskController::class, 'myTasks'])->name('tasks.myTasks'); // myTasksメソッドのルート追加
+    Route::get('/tasks/{task}', [TaskController::class, 'show'])->name('tasks.show'); // タスク詳細のルートを追加
     Route::resource('tasks', TaskController::class); // 既存のタスク関連のルート
 });
 
