@@ -27,6 +27,16 @@ class TaskController extends Controller
         return view('tasks.my_tasks', compact('tasks'));
     }
     
+    // タスク詳細ページ（mytasks_show.blade.php）を表示するメソッド
+    public function show($id)
+    {
+        // IDに基づいてタスクを取得
+        $task = Task::findOrFail($id);
+
+        // タスク詳細ビューを表示し、タスクデータを渡す
+        return view('tasks.mytasks_show', compact('task'));
+    }
+    
     // タスク作成ページを表示するメソッド
     public function create()
     {
@@ -61,5 +71,44 @@ class TaskController extends Controller
 
         // タスク一覧ページにリダイレクト
         return redirect()->route('tasks.index')->with('success', 'タスクが作成されました！');
+    }
+    
+    // タスク編集ページを表示するメソッド
+    public function edit($id)
+    {
+        // IDに基づいてタスクを取得
+        $task = Task::findOrFail($id);
+
+        // edit.blade.php ビューを表示し、タスクデータを渡す
+        return view('tasks.edit', compact('task'));
+    }
+
+    // タスク更新を保存するメソッド
+    public function update(Request $request, $id)
+    {
+        // フォームからの入力をバリデート
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'assignee' => 'required|string|max:255',
+            'category_id' => 'required|integer',
+            'deadline' => 'required|date',
+            'priority' => 'required|string',
+            'load_level' => 'required|integer|min:1|max:10',
+            'description' => 'required|string',
+        ]);
+
+        // タスクを取得して更新
+        $task = Task::findOrFail($id);
+        $task->title = $validated['title'];
+        $task->assignee = $validated['assignee'];
+        $task->category_id = $validated['category_id'];
+        $task->deadline = $validated['deadline'];
+        $task->priority = $validated['priority'];
+        $task->load_level = $validated['load_level'];
+        $task->description = $validated['description'];
+        $task->save();
+
+        // タスク一覧ページにリダイレクト
+        return redirect()->route('tasks.index')->with('success', 'タスクが更新されました！');
     }
 }
