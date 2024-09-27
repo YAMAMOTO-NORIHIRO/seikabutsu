@@ -111,4 +111,14 @@ class TaskController extends Controller
         // タスク一覧ページにリダイレクト
         return redirect()->route('tasks.index')->with('success', 'タスクが更新されました！');
     }
+    
+    // タスク削除メソッドの追加
+    public function destroy(Task $task)
+    {
+        // タスクを削除
+        $task->delete();
+
+        // 削除後、タスク一覧画面にリダイレクトし、メッセージを表示
+        return redirect()->route('tasks.myTasks')->with('status', 'タスクを削除しました');
+    }
 }
