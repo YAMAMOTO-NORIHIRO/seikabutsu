@@ -11,13 +11,13 @@
                 <div class="p-6 text-gray-900">
 
                     <!-- タスク一覧へのリンク -->
-                     <a href="{{ route('tasks.myTasks') }}" class="btn btn-primary">
+                     <a href="{{ route('tasks.my_tasks') }}" class="btn btn-primary">
                         タスク一覧を表示
                     </a>
 
                     <!-- 全員のタスク一覧へのリンクボタン -->
                     <div>
-                        <a href="#" class="btn btn-secondary">全員のタスク一覧を表示</a>
+                        <a href="{{ route('tasks.alltasks_show') }}" class="btn btn-secondary">全員のタスク一覧を表示</a>
                     </div>
 
                     <!-- 通知画面へのリンク -->

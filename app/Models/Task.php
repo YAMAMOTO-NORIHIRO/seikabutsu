@@ -38,5 +38,12 @@ class Task extends Model
     {
         return $this->belongsTo(User::class);
     }
-}
 
+    /**
+     * タスクに関連するカテゴリのリレーション
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+}
