@@ -26,6 +26,13 @@
 
                             <!-- タスク編集ボタン -->
                             <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-secondary">タスク編集</a>
+
+                            <!-- タスク削除ボタン -->
+                            <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" class="d-inline" onsubmit="return confirm('本当にこのタスクを削除しますか？');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">タスク削除</button>
+                            </form>
                         </div>
                     @endforeach
                 @endif
@@ -40,5 +47,6 @@
         </div>
     </div>
 </div>
+
 
 
