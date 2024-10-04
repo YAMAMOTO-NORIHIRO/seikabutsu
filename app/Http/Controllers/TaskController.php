@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use Carbon\Carbon;//日付や時間の操作を簡便に行うためのライブラリ
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -15,8 +16,31 @@ class TaskController extends Controller
         // 全員のタスクを取得（user情報を含める）
         $allTasks = Task::with('user')->get();
 
+        // 今日の日付を取得
+        $today = Carbon::today();
+
+        // 通知メッセージを格納する配列
+        $notifications = [];
+
+        // ログインユーザーのタスクに対する通知を生成
+        foreach ($tasks as $task) {
+            $daysUntilDeadline = $today->diffInDays(Carbon::parse($task->deadline), false);
+
+            if ($daysUntilDeadline > 0 && $daysUntilDeadline <= 3) {
+                // 締切が迫っている通知
+                $notifications[] = "タスク「{$task->title}」の締切期限があと{$daysUntilDeadline}日に迫っています。";
+            } elseif ($daysUntilDeadline === 0) {
+                // 締切当日通知
+                $notifications[] = "本日はタスク「{$task->title}」の締切期限です。";
+            } elseif ($daysUntilDeadline < 0) {
+                // 締切を過ぎている通知
+                $daysPast = abs($daysUntilDeadline);
+                $notifications[] = "タスク「{$task->title}」の締切期限から{$daysPast}日が経過しています。";
+            }
+        }
+
         // メニュー一覧ページを表示する場合
-        return view('tasks.index', compact('tasks', 'allTasks'));
+        return view('tasks.index', compact('tasks', 'allTasks', 'notifications'));
     }
 
     // タスク一覧ページ（my_tasks.blade.php）を表示するメソッド
