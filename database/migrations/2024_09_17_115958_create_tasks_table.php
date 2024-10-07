@@ -10,12 +10,12 @@ class CreateTasksTable extends Migration // クラス名はそのままに
     {
         // tasksテーブルを作成する
         Schema::create('tasks', function (Blueprint $table) {
-            $table->id();
+            //$table->id();
             $table->integer('category_id')->nullable();
             $table->date('deadline')->nullable();
             $table->string('priority')->nullable();
             $table->integer('load_level')->nullable();
-            $table->timestamps(); // created_at と updated_at カラムを追加
+            //$table->timestamps(); // created_at と updated_at カラムを追加
         });
     }
 
