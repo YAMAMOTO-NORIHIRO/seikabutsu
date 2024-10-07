@@ -8,30 +8,21 @@ class CreateTasksTable extends Migration // クラス名はそのままに
 {
     public function up()
     {
-        // 既存のtasksテーブルにカラムを変更する
-        Schema::table('tasks', function (Blueprint $table) {
-            // カラムが存在するかを確認し、必要に応じて変更
-            if (!Schema::hasColumn('tasks', 'category_id')) {
-                $table->integer('category_id')->nullable()->after('is_completed');
-            }
-            if (!Schema::hasColumn('tasks', 'deadline')) {
-                $table->date('deadline')->nullable()->after('category_id');
-            }
-            if (!Schema::hasColumn('tasks', 'priority')) {
-                $table->string('priority')->nullable()->after('deadline');
-            }
-            if (!Schema::hasColumn('tasks', 'load_level')) {
-                $table->integer('load_level')->nullable()->after('priority');
-            }
+        // tasksテーブルを作成する
+        Schema::create('tasks', function (Blueprint $table) {
+            $table->id();
+            $table->integer('category_id')->nullable();
+            $table->date('deadline')->nullable();
+            $table->string('priority')->nullable();
+            $table->integer('load_level')->nullable();
+            $table->timestamps(); // created_at と updated_at カラムを追加
         });
     }
 
     public function down()
     {
-        Schema::table('tasks', function (Blueprint $table) {
-            // 追加したカラムを削除する
-            $table->dropColumn(['category_id', 'deadline', 'priority', 'load_level']);
-        });
+        // tasksテーブルを削除する
+        Schema::dropIfExists('tasks');
     }
 }
 
