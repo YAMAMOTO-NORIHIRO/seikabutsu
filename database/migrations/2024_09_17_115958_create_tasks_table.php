@@ -4,18 +4,21 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTasksTable extends Migration // クラス名はそのままに
+class CreateTasksTable extends Migration
 {
     public function up()
     {
         // tasksテーブルを作成する
         Schema::create('tasks', function (Blueprint $table) {
-            //$table->id();
-            $table->integer('category_id')->nullable();
-            $table->date('deadline')->nullable();
-            $table->string('priority')->nullable();
-            $table->integer('load_level')->nullable();
-            //$table->timestamps(); // created_at と updated_at カラムを追加
+            $table->id(); // IDカラム
+            $table->string('title'); // タスクタイトル
+            $table->string('assignee'); // 担当者
+            $table->integer('category_id')->nullable(); // カテゴリID
+            $table->date('deadline')->nullable(); // 締切
+            $table->string('priority')->nullable(); // 優先度
+            $table->integer('load_level')->nullable(); // 負荷レベル
+            $table->text('description')->nullable(); // 詳細
+            $table->timestamps(); // created_at と updated_at カラム
         });
     }
 
