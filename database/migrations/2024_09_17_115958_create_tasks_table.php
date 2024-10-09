@@ -11,6 +11,7 @@ class CreateTasksTable extends Migration
         // tasksテーブルを作成する
         Schema::create('tasks', function (Blueprint $table) {
             $table->id(); // IDカラム
+            $table->unsignedBigInteger('user_id'); // ユーザーIDカラム
             $table->string('title'); // タスクタイトル
             $table->string('assignee'); // 担当者
             $table->integer('category_id')->nullable(); // カテゴリID

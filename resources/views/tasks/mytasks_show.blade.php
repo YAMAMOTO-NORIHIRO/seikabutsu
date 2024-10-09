@@ -21,7 +21,7 @@
 
                     <!-- 戻るボタン -->
                     <div class="mt-4">
-                        <a href="{{ route('tasks.myTasks') }}" class="btn btn-secondary">
+                        <a href="{{ route('tasks.my_tasks') }}" class="btn btn-secondary">
                             タスク一覧に戻る
                         </a>
                     </div>
