@@ -14,6 +14,7 @@ class TasksTableSeeder extends Seeder
     {
         DB::table('tasks')->insert([
             [
+                'user_id' => 1, // ユーザーIDを指定
                 'title' => 'testタスク1',
                 'assignee' => 'test担当者A',  // 担当者
                 'category_id' => 1,       // カテゴリID
@@ -25,6 +26,7 @@ class TasksTableSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'user_id' => 1, // ユーザーIDを指定
                 'title' => 'タスク2',
                 'assignee' => '担当者B',  // 担当者
                 'category_id' => 2,       // カテゴリID
