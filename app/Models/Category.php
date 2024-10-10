@@ -12,7 +12,7 @@ class Category extends Model
     /**
      * フィルラブルなフィールドの設定
      */
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'color'];
 
     /**
      * カテゴリに関連するタスクのリレーション
