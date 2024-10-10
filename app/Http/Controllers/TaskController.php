@@ -46,7 +46,7 @@ class TaskController extends Controller
     // タスク一覧ページ（my_tasks.blade.php）を表示するメソッド
     public function myTasks()
     {
-        $tasks = Task::where('user_id', auth()->id())->get();
+        $tasks = Task::where('user_id', auth()->id())->with('category')->get();
         return view('tasks.my_tasks', compact('tasks'));
     }
     
