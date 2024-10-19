@@ -29,7 +29,7 @@ class TaskController extends Controller
             if ($daysUntilDeadline > 0 && $daysUntilDeadline <= 3) {
                 // 締切が迫っている通知
                 $notifications[] = "タスク「{$task->title}」の締切期限があと{$daysUntilDeadline}日に迫っています。";
-            } elseif ($daysUntilDeadline === 0) {
+            } elseif ($daysUntilDeadline == 0) {
                 // 締切当日通知
                 $notifications[] = "本日はタスク「{$task->title}」の締切期限です。";
             } elseif ($daysUntilDeadline < 0) {

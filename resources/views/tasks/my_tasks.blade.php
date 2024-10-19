@@ -19,7 +19,6 @@
                             <p>締切: {{ $task->deadline->format('Y/m/d') }}</p>
                             <p>優先度: {{ $task->priority }}</p>
                             <p>負荷レベル: {{ $task->load_level }}</p>
-                            <p>詳細: {{ $task->description }}</p>
 
                             <!-- タスク詳細ボタン -->
                             <a href="{{ route('tasks.show', $task->id) }}" class="btn btn-primary">タスク詳細</a>
